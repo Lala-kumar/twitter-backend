@@ -123,6 +123,9 @@ export const updateUser = async (req, res) => {
           .status(400)
           .json({ error: "current password is not valid! or length is short" });
       }
+      if (newPassword.length < 6) {
+        return res.status(400).json({ error: "length is short" });
+      }
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(newPassword, salt);
