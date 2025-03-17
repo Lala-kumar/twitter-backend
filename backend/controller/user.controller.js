@@ -8,7 +8,7 @@ export const getUserProfile = async (req, res) => {
   const { username } = req.params;
 
   try {
-    const user = await User.findOne(username).select("-password");
+    const user = await User.findOne({ username }).select("-password");
 
     if (!user) return res.status(404).json({ error: "user not found!" });
 
@@ -80,12 +80,12 @@ export const getSuggestedUser = async (req, res) => {
     ]);
 
     const filteredUser = users.filter(
-      (user) => !usersFollowedByMe.following.includes(userId)
+      (user) => !usersFollowedByMe.following.includes(user._id)
     );
 
     const suggestedUser = filteredUser.slice(0, 4);
 
-    suggestedUser.foreEach((user) => (user.password = null));
+    suggestedUser.forEach((user) => (user.password = null));
     res.status(200).json(suggestedUser);
   } catch (error) {
     console.log("Suggested user", error.message);
