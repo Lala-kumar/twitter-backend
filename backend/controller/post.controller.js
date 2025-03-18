@@ -7,7 +7,6 @@ export const createPost = async (req, res) => {
   try {
     const { text } = req.body;
     let { img } = req.body;
-
     const userId = req.user._id.toString();
 
     const user = await User.findById(userId);
@@ -19,11 +18,10 @@ export const createPost = async (req, res) => {
     if (!text && !img) {
       return res.status(400).json({ error: "Post must have text or image!" });
     }
-
-    // if (img) {
-    //   const response = await cloudinary.uploader.upload(img);
-    //   img = response.secure_url;
-    // }
+    if (img) {
+      const response = await cloudinary.uploader.upload(img);
+      img = response.secure_url;
+    }
 
     const newPost = new Post({
       user: userId,
@@ -34,7 +32,7 @@ export const createPost = async (req, res) => {
     await newPost.save();
     res.status(201).json(newPost);
   } catch (error) {
-    console.log("Create Post", error.message);
+    console.log("Create Post:", error.message);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
