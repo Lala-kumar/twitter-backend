@@ -22,6 +22,9 @@ app.use(express.json({ limit: "1mb" })); // parse req.body
 app.use(express.urlencoded({ extended: true })); //parse fromdata
 app.use(cookieParser()); //for protectRoutes middleware
 
+app.use("/", (req, res) => {
+  res.json("Server Running!");
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
