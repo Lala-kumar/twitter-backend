@@ -9,7 +9,7 @@ const generateTokenAndSendCookie = (userId, res) => {
     maxAge: 24 * 60 * 60 * 1000,
     httpOnly: true, // xss attack
     sameSite: "none",
-    secure: process.env.NODE_ENV !== "development",
+    secure: false,
   });
 };
 
