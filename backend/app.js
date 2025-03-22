@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config(); // Load environment variables from .env
 
