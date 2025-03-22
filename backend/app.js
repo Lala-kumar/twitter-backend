@@ -20,7 +20,16 @@ cloudinary.config({
 const app = express();
 
 //cors config
-app.use(cors({ origin: "*", credentials: true }));
+app.use(
+  cors({
+    origin: [
+      "https://twitter-frontend-snowy.vercel.app",
+      "http://localhost:3000",
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "1mb" })); // parse req.body
 app.use(express.urlencoded({ extended: true })); //parse fromdata
 app.use(cookieParser()); //for protectRoutes middleware
