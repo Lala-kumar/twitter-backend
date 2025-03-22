@@ -18,6 +18,8 @@ cloudinary.config({
 
 const app = express();
 
+//cors config
+app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json({ limit: "1mb" })); // parse req.body
 app.use(express.urlencoded({ extended: true })); //parse fromdata
 app.use(cookieParser()); //for protectRoutes middleware
