@@ -20,7 +20,7 @@ cloudinary.config({
 const app = express();
 
 const allowedOrigins = [
-  "https://twitter-frontend-lemon.vercel.app",
+  "https://twitter-frontend-green-six.vercel.app",
   "http://localhost:3000",
   "http://localhost:5173",
 ];
